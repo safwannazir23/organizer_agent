@@ -1,0 +1,13 @@
+{
+  "ignore_patterns": [
+    ".git",
+    "node_modules",
+    "venv",
+    "__pycache__",
+    ".gemini",
+    "dist",
+    "build"
+  ],
+  "dry_run": false,
+  "target_directory": "C:/Users/SafwanNazir/OneDrive - EnableNow Technology Solutions/Desktop/Projects/agents/test_messy_codebase"
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoOrganizer AI | Smart Codebase Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Background Elements -->
+        <div class="bg-glow bg-glow-1"></div>
+        <div class="bg-glow bg-glow-2"></div>
+
+        <aside class="sidebar">
+            <div class="logo">
+                <i data-lucide="layers" class="logo-icon"></i>
+                <span>AutoOrganizer</span>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-item active" id="nav-dashboard">
+                    <i data-lucide="layout-dashboard"></i> Dashboard
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="status-card">
+                    <div class="status-indicator online"></div>
+                    <div class="status-text">Agent Online</div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="directory-selector">
+                    <i data-lucide="folder"></i>
+                    <input type="text" id="target-dir-input" placeholder="Path to messy codebase...">
+                    <button id="browse-btn" class="btn btn-sm btn-primary">Browse</button>
+                </div>
+                <div class="user-actions">
+                    <button class="btn btn-icon"><i data-lucide="bell"></i></button>
+                    <div class="user-profile">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=agent" alt="User">
+                    </div>
+                </div>
+            </header>
+
+            <section class="dashboard-grid">
+                <!-- Stats Overview -->
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i data-lucide="file-code"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-label">Total Files</span>
+                            <span class="stat-value" id="total-files">--</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i data-lucide="folder"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-label">Target Dir</span>
+                            <span class="stat-value" id="target-dir-name" title="Hover to see full path">--</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i data-lucide="zap"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-label">Last Run</span>
+                            <span class="stat-value">Just now</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Actions -->
+                <div class="actions-card card glass">
+                    <div class="card-header">
+                        <h2>Agent Control</h2>
+                        <p>Generate a reorganization plan using Gemini AI</p>
+                    </div>
+                    <div class="action-buttons">
+                        <div class="template-selector">
+                            <i data-lucide="layout"></i>
+                            <select id="framework-template">
+                                <option value="Generic">Generic Organization</option>
+                                <option value="Next.js">Next.js Project</option>
+                                <option value="Python">Python Package</option>
+                                <option value="Data Science">Data Science Workflow</option>
+                            </select>
+                        </div>
+                        <button id="scan-btn" class="btn btn-secondary">
+                            <i data-lucide="refresh-cw"></i> Scan Directory
+                        </button>
+                        <button id="plan-btn" class="btn btn-primary" disabled>
+                            <i data-lucide="brain-circuit"></i> Generate AI Plan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Content Area -->
+                <div class="content-split">
+                    <!-- File Browser -->
+                    <div class="file-browser card glass">
+                        <div class="card-header">
+                            <h3>Current Structure</h3>
+                        </div>
+                        <div class="file-list" id="current-files">
+                            <div class="empty-state">No files scanned yet.</div>
+                        </div>
+                    </div>
+
+                    <!-- Plan Preview -->
+                    <div class="plan-preview card glass">
+                        <div class="card-header">
+                            <h3>Proposed Changes</h3>
+                            <button id="execute-btn" class="btn btn-success" disabled>
+                                <i data-lucide="play"></i> Execute Plan
+                            </button>
+                        </div>
+                        <div class="plan-list" id="proposed-plan">
+                            <div class="empty-state">Generate a plan to see changes.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Console / Logs -->
+                <div class="console-card card glass">
+                    <div class="card-header">
+                        <h3>Process Logs</h3>
+                        <button class="btn btn-icon btn-sm" onclick="clearLogs()"><i data-lucide="trash-2"></i></button>
+                    </div>
+                    <div class="console-output" id="logs">
+                        <div class="log-entry system">> Ready to organize codebase.</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notifications" class="notification-container"></div>
+
+    <script src="app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
