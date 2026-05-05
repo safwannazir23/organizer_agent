@@ -13,7 +13,7 @@ const scanBtn = document.getElementById('scan-btn');
 const planBtn = document.getElementById('plan-btn');
 const executeBtn = document.getElementById('execute-btn');
 const templateSelector = document.getElementById('framework-template');
-const targetDirInput = document.getElementById('target-dir-input');
+const targetDirPath = document.getElementById('target-dir-path');
 const browseBtn = document.getElementById('browse-btn');
 const currentFilesList = document.getElementById('current-files');
 const proposedPlanList = document.getElementById('proposed-plan');
@@ -92,7 +92,7 @@ async function browseForDirectory() {
             mode: 'readwrite'
         });
         
-        targetDirInput.value = state.directoryHandle.name;
+        targetDirPath.textContent = state.directoryHandle.name;
         targetDirSpan.textContent = state.directoryHandle.name;
         
         log(`Selected directory: ${state.directoryHandle.name}`, 'success');

@@ -179,6 +179,16 @@ body {
     align-items: center;
     gap: 12px;
     width: 500px;
+    min-height: 44px;
+}
+
+.path-display {
+    flex: 1;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .template-selector {
